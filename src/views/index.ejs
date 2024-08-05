@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <%- include('partials/head') %>
+</head>
+<body>
+    <%- include('partials/navigation') %>
+    <main>
+        <div class="hero">
+            <h2>Bienvenidos a CineManía</h2>
+        </div>
+        <div class="content">
+            <h2>Nuestra Cartelera</h2>
+            <p>Descubre las últimas películas en estreno y disfruta de la mejor experiencia cinematográfica con nosotros.</p>
+            <div class="movies">
+                <div class="movie">
+                    <img src="/img/cine.jpg" alt="Película 1">
+                    <h3>Película 1</h3>
+                    <p>Una breve descripción de la película.</p>
+                </div>
+                <div class="movie">
+                    <img src="images/movie2.jpg" alt="Película 2">
+                    <h3>Película 2</h3>
+                    <p>Una breve descripción de la película.</p>
+                </div>
+                <div class="movie">
+                    <img src="images/movie3.jpg" alt="Película 3">
+                    <h3>Película 3</h3>
+                    <p>Una breve descripción de la película.</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 CineManía. Todos los derechos reservados.</p>
+    </footer>
+    <%- include('partials/footer') %>
+</body>
+</html>
