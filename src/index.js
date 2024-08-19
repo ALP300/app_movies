@@ -3,7 +3,7 @@ import{dirname, join} from 'path'
 import { fileURLToPath } from 'url'
 
 import indexRoute from './routes/index.js'
-import { Conectar } from './services/conexion.js'
+import { Conectar } from './services/conexion.mjs'
 
 const app= express()
 const __dirname= dirname(fileURLToPath(import.meta.url))

@@ -34,6 +34,47 @@
             </div>
         </div>
     </main>
+    <div id="mostrarPeliculas">
+
+    </div>
+
+    <script>
+        async function getPeliculas() {
+            try{
+                const response= await fetch('http://localhost:3000/api/get-peliculas',{
+                    method: 'GET',
+                    headers: {'Content-Type':'application/json'},
+            })
+            if(response.ok){
+                const peliculas= await response.json()
+                console.log("Las películas encontradas fueron: ")
+                console.log(peliculas)
+                mostrarpeliculas(peliculas)
+            }
+            }catch(error){
+
+            }
+        }
+        function mostrarpeliculas(peliculas){
+            const mostrarpeliculasDiv= document.getElementById('mostrarPeliculas');
+            mostrarpeliculasDiv.innerHTML=``
+            peliculas.forEach(peliculas=>{
+                const peliculaDiv= document.createElement('div');
+                peliculaDiv.classList.add('pelicula');
+                const titulo= document.createElement('h1');
+                titulo.textContent= pelicula.titulo;
+                const imagen= document.createElement('img');
+                imagen.textContent= pelicula.url;
+                imagen.src= pelicula.url;
+                imagen.alt= pelicula.titulo;
+                peliculaDiv.appendChild(titulo);
+                peliculaDiv.appendChild(imagen);
+                mostrarpeliculasDiv.appendChild(peliculaDiv);
+            })
+               
+        }
+        window.addEventListener('DOMContentLoaded', getPeliculas)
+    </script>
     <footer>
         <p>&copy; 2024 CineManía. Todos los derechos reservados.</p>
     </footer>
