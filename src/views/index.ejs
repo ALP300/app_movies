@@ -34,6 +34,25 @@
             </div>
         </div>
     </main>
+    <div>
+        
+        <form id="miForm">
+            <div>
+                <label for="titulo">Titulo</label>
+                <input type="text" name="titulo" id="titulo">
+            </div>
+            <div>
+                <label for="descripcion">Descripción</label>
+                <input type="text" name="descripcion" id="descripcion">
+            </div>
+            <div>
+                <label for="url">Url</label>
+                <input type="text" name="url" id="url">
+            </div>
+            
+            <button onclick="enviarPeliculas()" type="button">Guardar Película</button>
+        </form>
+    </div>
     <div id="mostrarPeliculas">
         <!-- Aquí se mostrarán las películas dinámicamente -->
     </div>
@@ -79,6 +98,38 @@
             });
         }
         window.addEventListener('DOMContentLoaded', getPeliculas);
+    </script>
+
+    <script>
+        function enviarPeliculas(){
+            var formulario= document.getElementById('miForm')
+            var formData= new FormData(formulario)
+            const dataPelicula={
+                titulo:formData.get('titulo'),
+                descripcion:formData.get('descripcion'),
+                url:formData.get('url')
+            }
+            console.log(dataPelicula)
+            fetch('http://localhost:3000/api/set-peliculas',{
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(dataPelicula)
+            })
+            .then(response=>{
+                if(response.ok){
+                    return response.json
+                }else{
+                    throw new Error("Error en su petición")
+                }
+            })
+            .then(data=>{
+                console.log(data)
+            })
+            .catch(error=>{
+                console.error("Error")
+            }
+            )
+        }
     </script>
     <footer>
         <p>&copy; 2024 CineManía. Todos los derechos reservados.</p>

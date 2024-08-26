@@ -33,3 +33,19 @@ export async function TraerPeliculas() {
         console.log(error)
     }
 }
+
+export async function guardarPelicula(pelicula) {
+    const cliente= new Client(config)
+    try{
+        await cliente.connect()
+        const queryPeli= 'INSERT INTO peliculas (titulo,descripcion,url) VALUES($1,$2,$3)';
+        const values=[pelicula.titulo, pelicula.descripcion, pelicula.url];
+        await cliente.query(queryPeli, values)
+        return true
+    }catch(error){
+        console.log(error)
+        return false
+    }finally{
+        await cliente.end()
+    }
+}

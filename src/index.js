@@ -8,6 +8,8 @@ import { Conectar } from './services/conexion.mjs'
 const app= express()
 const __dirname= dirname(fileURLToPath(import.meta.url))
 console.log(join(__dirname,'views'))
+
+app.use(express.json())
 app.set('views', join(__dirname,'views'))
 app.set('view engine','ejs')
 app.use(indexRoute)
