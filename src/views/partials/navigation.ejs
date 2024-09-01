@@ -4,66 +4,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Navegación Mejorada</title>
-    <style>
-        body {
-            font-family: 'Helvetica Neue', Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        nav {
-            background-color: #333;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-        nav ul {
-            list-style: none;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-        }
-        nav ul li {
-            margin: 0;
-        }
-        nav ul li a {
-            display: block;
-            padding: 1em 2em;
-            text-decoration: none;
-            color: white;
-            font-weight: bold;
-            transition: background-color 0.3s, color 0.3s;
-        }
-        nav ul li a:hover {
-            background-color: #555;
-            color: #ffcc00;
-        }
-        main {
-            margin-top: 4em;
-            padding: 2em;
-            text-align: center;
-        }
-    </style>
+    
 </head>
 <body>
-    <nav>
-        <ul>
-            <li>
-                <a href="/">Inicio</a>
-            </li>
-            <li>
-                <a href="/about">Sobre Nosotros</a>
-            </li>
-            <li>
-                <a href="/contact">Contáctanos</a>
-            </li>
-        </ul>
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container">
+            <a class="navbar-brand" href="/">CINEMANÍA</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">Sobre Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contáctanos</a>
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
     </nav>
-    <main>
+
+    <main class="container">
         <h1>Bienvenidos a Nuestra Página</h1>
         <p>Contenido principal aquí.</p>
     </main>
 </body>
+
 </html>

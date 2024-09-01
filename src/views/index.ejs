@@ -19,21 +19,118 @@
                 <div class="movie">
                     <img src="/img/cine.jpg" alt="Película 1">
                     <h3>Película 1</h3>
-                    <p>Una breve descripción de la película.</p>
+                    <p>Película sobre acción en la cuál aparece Will Smith.</p>
                 </div>
                 <div class="movie">
-                    <img src="images/movie2.jpg" alt="Película 2">
+                    <img src="/img/cine2.jpg" alt="Película 2">
                     <h3>Película 2</h3>
                     <p>Una breve descripción de la película.</p>
                 </div>
                 <div class="movie">
-                    <img src="images/movie3.jpg" alt="Película 3">
+                    <img src="/img/cine3.jpg" alt="Película 3">
                     <h3>Película 3</h3>
                     <p>Una breve descripción de la película.</p>
                 </div>
             </div>
         </div>
     </main>
+    <div>
+        
+        <form id="miForm">
+            <div>
+                <label for="titulo">Titulo</label>
+                <input type="text" name="titulo" id="titulo">
+            </div>
+            <div>
+                <label for="descripcion">Descripción</label>
+                <input type="text" name="descripcion" id="descripcion">
+            </div>
+            <div>
+                <label for="url">Url</label>
+                <input type="text" name="url" id="url">
+            </div>
+            
+            <button onclick="enviarPeliculas()" type="button">Guardar Película</button>
+        </form>
+    </div>
+    <div id="mostrarPeliculas">
+        <!-- Aquí se mostrarán las películas dinámicamente -->
+    </div>
+
+    <script>
+        async function getPeliculas() {
+            try {
+                const response = await fetch('http://localhost:3000/api/get-peliculas', {
+                    method: 'GET',
+                    headers: {'Content-Type':'application/json'},
+                });
+                if (response.ok) {
+                    const peliculas = await response.json();
+                    console.log("Las películas encontradas fueron: ");
+                    console.log(peliculas);
+                    mostrarpeliculas(peliculas);
+                } else {
+                    console.error("Error al obtener las películas:", response.statusText);
+                }
+            } catch (error) {
+                console.error("Error de red:", error);
+            }
+        }
+
+        function mostrarpeliculas(peliculas) {
+            const mostrarpeliculasDiv = document.getElementById('mostrarPeliculas');
+            mostrarpeliculasDiv.innerHTML = ""; // Limpia el contenido anterior
+
+            peliculas.forEach(pelicula => {
+                const peliculaDiv = document.createElement('div');
+                peliculaDiv.classList.add('pelicula');
+
+                const titulo = document.createElement('h1');
+                titulo.textContent = pelicula.titulo;
+
+                const imagen = document.createElement('img');
+                imagen.src = pelicula.url;
+                imagen.alt = pelicula.titulo;
+
+                peliculaDiv.appendChild(titulo);
+                peliculaDiv.appendChild(imagen);
+                mostrarpeliculasDiv.appendChild(peliculaDiv);
+            });
+        }
+        window.addEventListener('DOMContentLoaded', getPeliculas);
+    </script>
+
+    <script>
+        function enviarPeliculas(){
+            var formulario= document.getElementById('miForm')
+            var formData= new FormData(formulario)
+            const dataPelicula={
+                titulo:formData.get('titulo'),
+                descripcion:formData.get('descripcion'),
+                url:formData.get('url')
+            }
+            console.log(dataPelicula)
+            fetch('http://localhost:3000/api/set-peliculas',{
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(dataPelicula)
+            })
+            .then(response=>{
+                if(response.ok){
+                    return response.json
+                }else{
+                    throw new Error("Error en su petición")
+                }
+            })
+            .then(data=>{
+                console.log(data)
+            })
+            .catch(error=>{
+                console.error("Error")
+            }
+            )
+        }
+    </script>
     <footer>
         <p>&copy; 2024 CineManía. Todos los derechos reservados.</p>
     </footer>
